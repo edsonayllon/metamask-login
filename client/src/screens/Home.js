@@ -12,7 +12,9 @@ export default class Home extends Component {
 
   async componentDidMount() {
     const res = await fetch(`${config.API_ADDR}/api/home`);
-    this.setState({ message: res.text() })
+    const clone = await res.clone();
+    const text = await clone.text();
+    this.setState({ message: text });
   }
 
   render() {

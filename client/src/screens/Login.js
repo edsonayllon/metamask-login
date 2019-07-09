@@ -8,6 +8,7 @@ import { Input, Button } from '../components';
 import { Link } from '../navigation';
 import styles from '../stylesheet';
 import config from '../config';
+import Web3 from 'web3';
 
 export default class Login extends Component {
   state = {
@@ -17,7 +18,8 @@ export default class Login extends Component {
     },
     loading: false,
     message: '',
-    loginSuccess: false
+    loginSuccess: false,
+    ethereum: '',
   }
 
   storeToken = async (token) => {
@@ -41,6 +43,10 @@ export default class Login extends Component {
   signIn = async (e) => {
     e.preventDefault();
     this.setState({loading: true});
+
+    this.state.ethereum.enable();
+    const address = this.state.ethereum.selectedAddress;
+    console.log(address);
     try {
       const res = await fetch(`${config.API_ADDR}/auth/authenticate`, {
         method: 'POST',
@@ -81,6 +87,23 @@ export default class Login extends Component {
         loginSuccess: false
       });
     }
+  }
+
+  signUp = async (address) => {
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`, {
+      body: JSON.stringify({ address }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
+    });
+    const json = await res.json();
+    console.log(json);
+  }
+
+  componentDidMount() {
+    const ethereum = window.ethereum;
+    this.setState({ ethereum });
   }
 
   render() {
