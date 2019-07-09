@@ -87,27 +87,9 @@ export default class Login extends Component {
     return (
       <View>
         <Text>Login Below!</Text>
-        <Input
-            placeholder="Email"
-            type='email'
-            name='email'
-            onChangeText={this.onInputChange}
-            value={this.state.user.email}
-          />
-        <Input
-            placeholder="Password"
-            type='password'
-            name='password'
-            onChangeText={this.onInputChange}
-            value={this.state.user.password}
-            secureTextEntry
-          />
-        <Link to="/forgot-password">
-          <Text style={styles.link}>Forgot Password?</Text>
-        </Link>
         <Button
           isLoading = {this.state.loading}
-          title='Sign In'
+          title='Sign In with Metamask'
           onPress={this.signIn}
           />
         <Text style={this.state.loginSuccess
