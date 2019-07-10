@@ -45,7 +45,8 @@ export default class Login extends Component {
     this.setState({loading: true});
 
     this.state.ethereum.enable();
-    const address = this.state.ethereum.selectedAddress;
+    const address = await this.state.ethereum.selectedAddress;
+    console.log(this.state.ethereum);
     console.log(address);
     try {
       const res = await fetch(`${config.API_ADDR}/auth/authenticate`, {
