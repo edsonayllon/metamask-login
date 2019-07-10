@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 // their account will be deleted by default
 const UserSchema = new mongoose.Schema({
   address: { type: String, required: false, unique: true },
-  nonce: { type: int, required: false, default: () => Math.floor(Math.random() * 1000000),  }
+  nonce: { type: Number, required: false, default: () => Math.floor(Math.random() * 1000000),  }
 });
 
 module.exports = mongoose.model('user', UserSchema);

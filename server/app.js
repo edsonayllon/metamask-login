@@ -23,8 +23,6 @@ const homeRouter = require('./routes/home.route');
 const secretRouter = require('./routes/secret.route');
 
 // user settings
-const changePasswordRouter = require('./routes/changePassword.route');
-const changeUsernameRouter = require('./routes/changeUsername.route');
 
 const app = express();
 
@@ -72,8 +70,6 @@ app.use('/api/home', homeRouter);
 app.use('/api/secret', userMid.jwt, secretRouter);
 
 // user settings
-app.use('/api/change-password', userMid.jwt,  changePasswordRouter);
-app.use('/api/change-username', userMid.jwt,  changeUsernameRouter);
 
 // auth routs
 app.use('/auth/register', registerRouter);
